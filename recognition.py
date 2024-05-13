@@ -5,7 +5,7 @@ import pyaudio
 
 class Ears:
     def __init__(self):
-        model = vosk.Model('vosk-model-small-ru-0.4')
+        model = vosk.Model('vosk-model-small-en-us-0.15')
         self.rec = vosk.KaldiRecognizer(model, 16000)
         self._start_stream()
     
