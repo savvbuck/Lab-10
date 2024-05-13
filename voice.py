@@ -14,7 +14,3 @@ class Voice:
         self.speaker = speaker
 
 voice = Voice()
-
-if __name__ == '__main__':
-    voice = Voice()
-    voice.text_to_speech()

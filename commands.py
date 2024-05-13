@@ -3,12 +3,14 @@ import handlers
 
 
 COMMANDS = [
-    {'id': 0, 'text': 'joke', 'handler': handlers.create}
-    # {'id': 1, 'text': 'хватит', 'handler': handlers.stop},
-    # {'id': 2, 'text': 'thank you', 'handler': handlers.thanks}
+    {'id': 0, 'text': 'joke', 'handler': handlers.create},  #creates new joke
+    {'id': 1, 'text': 'single', 'handler': handlers.single_joke},   #creates single-type joke
+    {'id': 2, 'text': 'punchline', 'handler': handlers.twopart_joke},   #creates twopart-type joke
+    {'id': 3, 'text': 'book', 'handler': handlers.write_down},  #writes joke to a file
+    {'id': 3, 'text': 'flush', 'handler': handlers.clear}   #clears joke_list.txt file
 ] 
 
-ACTIVATION = 'travis'
+ACTIVATION = 'michael'
 
 
 class Command:

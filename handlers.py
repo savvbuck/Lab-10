@@ -4,8 +4,27 @@ from voice import voice
 import json
 
 
-def create(type='single'):
+def single_joke(text):
+    create(type='single')
 
+def twopart_joke(text):
+    create(type='twopart')
+
+def write_down(text):
+    with open('joke_list.txt', 'a') as jk:
+        with open ('template.txt', 'r') as tmp:
+            jk.write(f'{tmp.read()}\n')
+            jk.flush()
+    voice.text_to_speech('Previous joke was written to joke_list.txt')
+
+
+def clear(text):
+    with open('joke_list.txt', 'w') as jk:
+        jk.close()
+    voice.text_to_speech('joke_list was cleared')
+
+
+def create(type='twopart'):
     url = "https://jokeapi-v2.p.rapidapi.com/joke/Any"
     querystring = {"format":"json", "blacklistFlags":"nsfw,racist", "lang":"en", "type":type}
     headers = {
@@ -14,10 +33,18 @@ def create(type='single'):
     }
     response = requests.get(url, headers=headers, params=querystring)
     res = json.loads(response.text)
-    voice.text_to_speech(res['setup'])
-    time.sleep(1)
-    voice.text_to_speech(res['delivery'])
-    print(res['setup'], res['delivery'])
+    if res['type'] == 'single':
+        with open('template.txt', 'w') as tmp:
+            tmp.write(res['joke'])
+        voice.text_to_speech(res['joke'])
+    if res['type'] == 'twopart':
+        with open('template.txt', 'w') as tmp:
+            tmp.write(res['setup'])
+            tmp.write(res['delivery'])
+        voice.text_to_speech(res['setup'])
+        time.sleep(0.7)
+        voice.text_to_speech(res['delivery'])
+    
     
 
 
