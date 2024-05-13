@@ -28,7 +28,7 @@ def create(type='twopart'):
     url = "https://jokeapi-v2.p.rapidapi.com/joke/Any"
     querystring = {"format":"json", "blacklistFlags":"nsfw,racist", "lang":"en", "type":type}
     headers = {
-	"X-RapidAPI-Key": "3f62fc2010mshd91f0dd98db5d87p1505edjsnb04b8d3e7538",
+	"X-RapidAPI-Key": "your api", #ENTER API HERE
 	"X-RapidAPI-Host": "jokeapi-v2.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring)
